@@ -58,7 +58,6 @@ def user_input(prompt):
         # if it is not a letter
         if not user_input.isalpha():
             user_input = input("Please input a letter: ")
-
     return user_input
 
 def replace_blanks_with_letter(char, blanks, indicies):
@@ -77,8 +76,12 @@ def game():
     secret_word = load_word()
     blanks = ["_"] * len(secret_word)
     lives = 7
+    guesses = []
     while lives > 0 and secret_word != ''.join(blanks):
         guess = user_input("Enter a letter: ") 
+        while guess in guesses:
+            guess = user_input("You already guessed that try again: ") 
+        guesses.append(guess)
         indicies = find_indicies(secret_word, guess)    
         #if the letter is found 
         if len(indicies) > 0: 
@@ -88,13 +91,16 @@ def game():
             print("Correct!" , guess , "is in the word!")
             print("".join(blanks))
             print("Lives:" , lives)
-            print("Guesses:")
+            print("Guesses:" , ", ".join(guesses))
+
         # the guess was incorrect
         else:
             lives -= 1
             print("Wrong!", guess , "is not in the word!")
             print("".join(blanks))
             print("Lives:" , lives)
+            print("Guesses:" , ", ".join(guesses))
+
     if lives == 0:
         print("Game over!!! The secret word was " + secret_word + ".")
     else:
