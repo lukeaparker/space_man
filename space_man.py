@@ -75,7 +75,7 @@ def replace_blanks_with_letter(char, blanks, indicies):
 def game():
     secret_word = load_word()
     blanks = ["_"] * len(secret_word)
-    lives = 7
+    lives = len(secret_word)
     guesses = []
     while lives > 0 and secret_word != ''.join(blanks):
         guess = user_input("Enter a letter: ") 
@@ -107,5 +107,3 @@ def game():
         print("Congratulations! You won the game!")
 print("Welcome to space man! Try to guess the secret word by guessing different letters!")
 game()
-
-
