@@ -22,6 +22,9 @@ def find_indicies(str, find_char):
             indicies.append(index)
     return indicies
 
+def test_find_indicies():
+    assert find_indicies("abca", "a") == [0,3]
+
 
 def find_indicies_for_char(str, find_char):
     '''alternate approach to find indicies '''
@@ -42,6 +45,9 @@ def find_indicies_enumerate(str, find_char):
         if char == find_char:
             indicies.append(index)
     return indicies
+
+    def test_find_indicies_enumerate():
+        assert find_indicies_enumerate("j", "j") == [0]
 
 
 
@@ -70,7 +76,10 @@ def replace_blanks_with_letter(char, blanks, indicies):
     for update_index in indicies:
         # update blanks at index update_index w char
         blanks[update_index] = char
-    return blanks 
+    return blanks
+
+def test_replace_blanks_with_letter():
+    assert replace_blanks_with_letter("j", ['_','_'], [0,1]) == ['j','j'] 
 
 def game():
     secret_word = load_word()
@@ -105,5 +114,10 @@ def game():
         print("Game over!!! The secret word was " + secret_word + ".")
     else:
         print("Congratulations! You won the game!")
-print("Welcome to space man! Try to guess the secret word by guessing different letters!")
-game()
+
+if __name__ == "__main__":
+    print("Welcome to space man! Try to guess the secret word by guessing different letters!")
+    game()
+
+
+    
